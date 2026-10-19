@@ -1,0 +1,3 @@
+<ns1:Doc xmlns:ns1="urn:a" xmlns:ns2="urn:b" b="2" a="1"><ns2:Child ns2:x="y">
+ text with CRLF
+</ns2:Child><Empty/><cdata><![CDATA[<raw> & stuff]]></cdata></ns1:Doc>

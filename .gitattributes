@@ -1,0 +1,7 @@
+* text=auto
+
+# Golden files are compared byte for byte (CRLF line breaks, BOMs and all): never convert them.
+tests/DigSig.Tests/TestData/** -text
+
+*.sh text eol=lf
+*.pfx binary

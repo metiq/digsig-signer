@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Declaration xmlns="urn:cdeps:excise" version="1.0">
+  <Header>
+    <Number>EX-2026-0001</Number>
+    <Company vat="MK4000000000001">PRIMER DOOEL</Company>
+  </Header>
+  <Items>
+    <Item code="2203" qty="10.5"/>
+    <!-- comment -->
+    <Item code="2204" qty="3"></Item>
+  </Items>
+</Declaration>

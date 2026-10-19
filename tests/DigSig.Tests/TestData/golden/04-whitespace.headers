@@ -1,0 +1,8 @@
+HTTP/1.1 201 
+Access-Control-Allow-Origin: https://portal.example.mk
+Vary: Origin
+Access-Control-Allow-Credentials: true
+Content-Type: application/xml;charset=UTF-8
+Content-Length: 2720
+Date: Mon, 19 Oct 2026 09:51:04 GMT
+

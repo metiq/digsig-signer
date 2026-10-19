@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DigSig.Cli/DigSig.Cli.csproj" />
+    <Project Path="src/DigSig.Core/DigSig.Core.csproj" />
+    <Project Path="src/DigSig.Desktop/DigSig.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DigSig.Tests/DigSig.Tests.csproj" />
+  </Folder>
+</Solution>

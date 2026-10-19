@@ -1,0 +1,8 @@
+HTTP/1.1 200 
+Access-Control-Allow-Origin: https://portal.example.mk
+Vary: Origin
+Access-Control-Allow-Credentials: true
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Mon, 19 Oct 2026 09:51:04 GMT
+

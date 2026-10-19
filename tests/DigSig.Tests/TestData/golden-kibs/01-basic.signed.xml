@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Declaration xmlns="urn:cdeps:excise" version="1.0">
+  <Header>
+    <Number>EX-2026-0001</Number>
+    <Company vat="MK4000000000001">PRIMER DOOEL</Company>
+  </Header>
+  <Items>
+    <Item code="2203" qty="10.5"/>
+    <!-- comment -->
+    <Item code="2204" qty="3"/>
+  </Items>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>qny6DBKNpEqAh86wjVh9Q9JU2X8=</DigestValue></Reference></SignedInfo><SignatureValue>nqprYIe8Y4MrjRKrkLOTDxjqgF0RwkHg58CO1MMae73z4DXG0+PZnYXwYF95s2Nbt83WXt+DDdcB&#13;
+QvAW2owpMm49ESdQ/LUZpyeW69FyKG/vpiWSMiMS7j6ecCQhOfboDnpLr4Wd0Wmhh1zkIz02kJUP&#13;
+r7ChPbGJc2tLxpL4t9mvqAX6AVgX8z2BWZOp3Un6I2gBLeozNuTwg/DJraYhimgFGW+yFW+eImGC&#13;
+ufQUhHiWDR4NVFHtw9uLN8V0CIMM1QcgW7c7aMaRbHMeOUzxtEJroSYwVc2ONWyJUWUasKQdWLI/&#13;
+NN+QgyCaprB58Unw6HlcyUcbqeWjhNjRgC4tFg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=MK,L=Скопје,ST=Skopje\, \"Centar\",STREET=Ул. Македонија 1 \+ 2\; \&lt;x\&gt;,O=Пример ДООЕЛ,OU=VAT - 4000000000002,2.5.4.12=#13074d616e61676572,DC=example,UID=uid123,1.2.840.113549.1.9.1=#16107065746172406578616d706c652e6d6b,2.5.4.5=#0c0423313233,2.5.4.43=#0c025050,2.5.4.46=#1303646e71,2.5.4.44=#0c024a72,1.2.3.4.5=#0c0a637573746f6d3d76616c,CN=\ Петар  Петровски\, \"Test\"\\\ </X509SubjectName><X509Certificate>MIIEVzCCAz+gAwIBAgICAQIwDQYJKoZIhvcNAQELBQAwRzEfMB0GA1UEAwwWS0lCU1RydXN0IFF1&#13;
+YWxpZmllZCBDQTEXMBUGA1UECgwOS0lCUyBBRCBTa29wamUxCzAJBgNVBAYTAk1LMB4XDTI1MTIz&#13;
+MTIzMzAwMFoXDTI3MDEwMTAwMzAwMFowggGUMTIwMAYDVQQDDCkg0J/QtdGC0LDRgCAg0J/QtdGC&#13;
+0YDQvtCy0YHQutC4LCAiVGVzdCJcIDEUMBIGBCoDBAUMCmN1c3RvbT12YWwxCzAJBgNVBCwMAkpy&#13;
+MQwwCgYDVQQuEwNkbnExCzAJBgNVBCsMAlBQMQ0wCwYDVQQFDAQjMTIzMR8wHQYJKoZIhvcNAQkB&#13;
+FhBwZXRhckBleGFtcGxlLm1rMRYwFAYKCZImiZPyLGQBAQwGdWlkMTIzMRcwFQYKCZImiZPyLGQB&#13;
+GRYHZXhhbXBsZTEQMA4GA1UEDBMHTWFuYWdlcjEcMBoGA1UECwwTVkFUIC0gNDAwMDAwMDAwMDAw&#13;
+MjEgMB4GA1UECgwX0J/RgNC40LzQtdGAINCU0J7QntCV0JsxLjAsBgNVBAkMJdCj0LsuINCc0LDQ&#13;
+utC10LTQvtC90LjRmNCwIDEgKyAyOyA8eD4xGTAXBgNVBAgMEFNrb3BqZSwgIkNlbnRhciIxFTAT&#13;
+BgNVBAcMDNCh0LrQvtC/0ZjQtTELMAkGA1UEBhMCTUswggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw&#13;
+ggEKAoIBAQCiegXfyN6XfC8MYEw2Po/8KrZ2EEd6HtwFAShLWjpUjLdec5Eeb/aI5egojNOSnm3r&#13;
+KFZ++Vcem9oYfXNStxBy4P0XBmclen6QSaw+Kn3W+PmDhyAQENxDnv1dKFfNwOPX/Y0AJGlCpt+j&#13;
+lg08J3OViQxbqiKhe1PgWjdqBon8AD0/qowSVEddKWyi2/QHshFMl7xqQPm9KDcMcedDuaRcSTR2&#13;
+68IqZAcDMRheYsFrJ8tkByy+0+FF4w0xEeqChlexv6UWUMSf23aNll0NpHqVTQVShFWtXur9YMVm&#13;
+HmNc2gJyzK8AyISw71O8nnaAnswrvGx06JzEG8LM2iXpX15xAgMBAAEwDQYJKoZIhvcNAQELBQAD&#13;
+ggEBAG3WJZevSG8Izq4+oqDGDfAXXlpO8PQYyCkJM9fUoP3PtsmGxWMCk5BaCxbNTSQIjN0y1X0g&#13;
+2niKcbGqwPXx3T7ieIl/JL3+7F6z4rCefnp6pZguFTPo0tiIPFwTw/i4qG6mNgjh5GibHTdEonHD&#13;
+LLXZQT/h4nAKPSyfpg28wRRVXSzVqZtdDnlxaSOx2B+1cjf2Mqdp7H6BOkoDeRQLSXZRk70p4flR&#13;
+M/41QrE2La5sP+QFlCZfP1JblrC8Mid3myiK0Qxn8WzmxBQttS8D0RsX3VQZqyYq8IY4nKSD1O7s&#13;
+QQVzl9RZqqdCmToSUS3iy20nJ/NTDTfTFwYcpjkAPL0=</X509Certificate></X509Data></KeyInfo></Signature></Declaration>

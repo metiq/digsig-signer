@@ -1,0 +1,46 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DigSig.Desktop.App"
+             RequestedThemeVariant="Default">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+          <SolidColorBrush x:Key="MutedText" Color="#57606A" />
+          <SolidColorBrush x:Key="CardBackground" Color="#F6F8FA" />
+          <SolidColorBrush x:Key="CardBorder" Color="#D0D7DE" />
+          <SolidColorBrush x:Key="WarningBackground" Color="#FFF1E5" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+          <SolidColorBrush x:Key="MutedText" Color="#9DA7B3" />
+          <SolidColorBrush x:Key="CardBackground" Color="#161B22" />
+          <SolidColorBrush x:Key="CardBorder" Color="#30363D" />
+          <SolidColorBrush x:Key="WarningBackground" Color="#3D1F12" />
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+    <Style Selector="TextBlock.muted">
+      <Setter Property="Foreground" Value="{DynamicResource MutedText}" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="TextBlock.section">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Margin" Value="0,0,0,6" />
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{DynamicResource CardBackground}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="12" />
+    </Style>
+    <Style Selector="Border.warning">
+      <Setter Property="Background" Value="{DynamicResource WarningBackground}" />
+    </Style>
+  </Application.Styles>
+</Application>

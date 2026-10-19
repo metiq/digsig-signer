@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Declaration xmlns="urn:cdeps:excise" version="1.0">
+  <Header>
+    <Number>EX-2026-0001</Number>
+    <Company vat="MK4000000000001">PRIMER DOOEL</Company>
+  </Header>
+  <Items>
+    <Item code="2203" qty="10.5"/>
+    <!-- comment -->
+    <Item code="2204" qty="3"/>
+  </Items>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>qny6DBKNpEqAh86wjVh9Q9JU2X8=</DigestValue></Reference></SignedInfo><SignatureValue>kcUJ3Ajsbsxtsc4MUgOTJYy/c3eCRpOSdZ9tuQiV1U11x+Z79r+nWFeW5hKRIMtMWg3YK0GONg02&#13;
+uSwYBgyyKSZ6PZo5RvIceGAMb8OJrvTQdw0ElTbndPK1Hw8zWHbhxa7lPwhSU1bXPXc8PVPKw8xY&#13;
+x+2j5DSSzz8Gs9ffv1KyU56WiCnlO+Wllqpvo1JB05exmyjNMhLoT5CR7McV2C7KwN57xAP5CiWH&#13;
+iFNdQBSM2Z4FUrRqnkHkPEVlZYmZYSO35xVj/jOGPc29MeEqrr65mK/GCtUEZ1LVfRq2YwaYSA+s&#13;
+QAdS6S7gOXQDI9IubfFgpEeFDhNC4qX++akbSw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>2.5.4.42=#13055065746172+2.5.4.4=#1309506574726f76736b69+2.5.4.5=#130a43525430303030303031+CN=Petar Petrovski,OU=PRIMER DOOEL:4000000000001,O=PRIMER DOOEL+2.5.4.97=#13135641544d4b2d34303030303030303030303031,C=MK</X509SubjectName><X509Certificate>MIIDpTCCAo2gAwIBAgIRAMWiQKlb2YYIgMxKWtDV+RkwDQYJKoZIhvcNAQELBQAwSjELMAkGA1UE&#13;
+BhMCTUsxGzAZBgNVBAoTEk1ha2Vkb25za2kgVGVsZWtvbTEeMBwGA1UEAxMVTWFrZWRvbnNraSBU&#13;
+ZWxla29tIENBMB4XDTI1MDYyNDEyNTAwNloXDTMwMDYyNDEzMjAwNlowgbIxCzAJBgNVBAYTAk1L&#13;
+MTEwEwYDVQQKEwxQUklNRVIgRE9PRUwwGgYDVQRhExNWQVRNSy00MDAwMDAwMDAwMDAxMSMwIQYD&#13;
+VQQLExpQUklNRVIgRE9PRUw6NDAwMDAwMDAwMDAwMTFLMAwGA1UEKhMFUGV0YXIwEAYDVQQEEwlQ&#13;
+ZXRyb3Zza2kwEQYDVQQFEwpDUlQwMDAwMDAxMBYGA1UEAxMPUGV0YXIgUGV0cm92c2tpMIIBIjAN&#13;
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwNCmTtJ+kpn+2JXycSv1ZtdkvkHXjeCMCUMxVB3e&#13;
+DIHnutg9n52Yzjovon+4jodLpARHH4ivAYB0VBW5ATGcuGRzHfY4Sb36IEIyJI/IorBJXi7W/v0V&#13;
+5LfwMeulNxI6dJSVwXWCRavrsKl7sO8XjZLBmtCQ9+z462sRAibL3+avI1Fzb1LgWo10y+dpB4vM&#13;
+98zfLSHz4zbZoUkwh/7B5zqV1b2Q1SKdlemyTogaLwHGU0gRHs1ReW6bCD3zHw34JEDd3hn+m5hk&#13;
+k6Mv2kaqdDcEmnsqqVGolgsLngMwHWFpeQJTx+W53q7zOU/Ib8zABbInyOUWhcqalMg8BqIv8QID&#13;
+AQABox0wGzAJBgNVHRMEAjAAMA4GA1UdDwEB/wQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAQEAecUP&#13;
+GlzmbVRrAViZMDhXnPKqAxf1YbdZjzPbeR6sp50EviV1VazFs5yhaTEmAU477WKAsQ02NCdf4O9A&#13;
+aJAFha+BWpYIcyQb552iaNSp3MRA2m08AXDvkGaHwmS0wZGcPaL8wqor0Ohk+KwHKnduir+GguUX&#13;
+ZYWN8w/fGbeLDErys6vdRtF7QGIR8OBEdt5wqJvQ7TK3+s0Bj4O2yC80lkiLmuDg5K5xErigkS7M&#13;
+ZYt/N0DZdJUeEy/F0NzHf00sl50tdRePXq1UJ6ki9EWHJK0OwFy7Z80GuWo8R9MfkogzfgvzRlGT&#13;
+1jW3uyHuBfg49hF0LnWBpk3PGMmAh0aqsA==</X509Certificate></X509Data></KeyInfo></Signature></Declaration>

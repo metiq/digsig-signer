@@ -1,0 +1,12 @@
+bin/
+obj/
+publish/
+.vs/
+.vscode/
+.idea/
+*.user
+TestResults/
+
+# Third-party material that must not be published: the original application and its decompiled sources.
+*.jar
+reference/
