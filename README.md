@@ -14,6 +14,12 @@ C#/.NET 10 and runs on Windows, macOS and Linux.
 > **Unofficial.** This is an independent reimplementation. It is not affiliated with or endorsed by the Customs
 > Administration of the Republic of North Macedonia or by the vendor of the original application.
 
+## Download
+
+Get the latest version from **[Releases](../../releases/latest)**. For Windows, download
+`DigSig-x.y.z-win-x64.zip`, unzip it, and run `DigSig.exe`. Nothing else needs to be installed.
+Linux and macOS builds are also provided, but they are experimental.
+
 ## How it works
 
 The portal in your browser talks to a small HTTPS server on your own computer, just as it did with the

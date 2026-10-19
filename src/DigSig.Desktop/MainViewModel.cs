@@ -92,6 +92,10 @@ public sealed class MainViewModel : ObservableObject, IAsyncDisposable
 
     public bool IsWindows => OperatingSystem.IsWindows();
 
+    public string AppVersion { get; } = "v" + (typeof(MainViewModel).Assembly
+        .GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+        .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion.Split('+')[0] ?? "dev");
+
     public bool UseWindowsStore
     {
         get => _settings.UseWindowsStore;

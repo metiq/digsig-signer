@@ -1,0 +1,90 @@
+# Builds the downloads and creates a DRAFT GitHub release when a version tag is pushed:
+#   git tag v1.0.0 && git push github v1.0.0
+# Review the draft on GitHub, then press "Publish release".
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet test --project tests/DigSig.Tests -c Release
+
+  build:
+    needs: test
+    strategy:
+      matrix:
+        include:
+          - { rid: win-x64, os: windows-latest }
+          - { rid: linux-x64, os: ubuntu-latest }
+          - { rid: osx-arm64, os: macos-latest }
+          - { rid: osx-x64, os: macos-latest }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Publish
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          for project in Desktop Cli; do
+            dotnet publish "src/DigSig.$project" -c Release -r "${{ matrix.rid }}" --self-contained \
+              -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true \
+              -p:EnableCompressionInSingleFile=true -p:DebugType=none \
+              -p:Version="$VERSION" -o out/DigSig
+          done
+          rm -f out/DigSig/aspnetcorev2_inprocess.dll
+          cp README.md out/DigSig/
+          if [ -f LICENSE ]; then cp LICENSE out/DigSig/; fi
+          echo "PACKAGE=DigSig-$VERSION-${{ matrix.rid }}" >> "$GITHUB_ENV"
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path out/DigSig/* -DestinationPath "$env:PACKAGE.zip"
+
+      - name: Package (macOS / Linux)
+        if: runner.os != 'Windows'
+        run: tar -czf "$PACKAGE.tar.gz" -C out DigSig   # tar keeps the executable bit
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ env.PACKAGE }}
+          path: ${{ env.PACKAGE }}.*
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd dist
+          sha256sum DigSig-* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          flags=()
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then flags+=(--prerelease); fi   # e.g. v1.0.0-beta.1
+          gh release create "$GITHUB_REF_NAME" DigSig-* SHA256SUMS.txt \
+            --repo "$GITHUB_REPOSITORY" --draft --verify-tag \
+            --title "DigSig ${GITHUB_REF_NAME#v}" \
+            --notes-file ../.github/release-notes.md --generate-notes "${flags[@]}"
