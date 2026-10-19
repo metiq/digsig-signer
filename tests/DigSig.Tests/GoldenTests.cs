@@ -18,6 +18,10 @@ public class GoldenTests
 
     internal static PfxIdentity TestIdentity() => new(Data("test-leaf.pfx"), "test123");
 
+    // The originals' dates are rendered in the JVM's local zone; the golden files were recorded in Skopje
+    // (tools/capture-golden.sh pins it), and the KIBS certificate's validity starts just before midnight UTC.
+    private static readonly TimeZoneInfo GoldenTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Skopje");
+
     private static IEnumerable<string> InputNames() =>
         Directory.GetFiles(Data("in"), "*.xml").Select(f => Path.GetFileNameWithoutExtension(f)).Order();
 
@@ -62,7 +66,7 @@ public class GoldenTests
     {
         using var identity = new PfxIdentity(Data(pfx), "test123");
 
-        var json = CertificateDetails.From(identity).ToJson();
+        var json = CertificateDetails.From(identity, GoldenTimeZone).ToJson();
 
         using var expected = JsonDocument.Parse(File.ReadAllBytes(Data(goldenDir, "cert.json")));
         using var actual = JsonDocument.Parse(json);
@@ -70,6 +74,15 @@ public class GoldenTests
         Assert.Equal(
             expected.RootElement.EnumerateObject().Select(p => (p.Name, p.Value.ToString())).OrderBy(p => p.Name),
             actual.RootElement.EnumerateObject().Select(p => (p.Name, p.Value.ToString())).OrderBy(p => p.Name));
+    }
+
+    [Fact]
+    public void Validity_dates_use_the_given_time_zone()
+    {
+        using var identity = new PfxIdentity(Data("kibs.pfx"), "test123"); // valid from 2025-12-31 23:30 UTC
+
+        Assert.Equal("31.12.2025", CertificateDetails.From(identity, TimeZoneInfo.Utc).ValidFrom);
+        Assert.Equal("1.1.2026", CertificateDetails.From(identity, GoldenTimeZone).ValidFrom);
     }
 
     [Fact]

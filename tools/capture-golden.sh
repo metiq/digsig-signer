@@ -20,7 +20,8 @@ dotnet run "$REPO/tools/make-test-pki.cs" -- "$WORK"
 cp "$WORK/test-leaf.pfx" "$WORK/kibs.pfx" "$DATA/"
 
 start() { # $1 = directory with application.properties
-  (cd "$1" && exec "$JAVA" -jar "$JAR" >"$1/java.log" 2>&1) &
+  # Dates in /certificate are rendered in the JVM's zone; the tests expect Skopje time.
+  (cd "$1" && exec "$JAVA" -Duser.timezone=Europe/Skopje -jar "$JAR" >"$1/java.log" 2>&1) &
   JAVA_PID=$!
   for _ in $(seq 1 60); do curl -sk -o /dev/null https://localhost:8443/certificate && return 0; sleep 1; done
   echo "the original did not start, see $1/java.log" >&2; exit 1

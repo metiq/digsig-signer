@@ -24,7 +24,10 @@ public sealed record CertificateDetails(
     public string? IssuerString => JavaCertificateHelper.GetIssuerString(Publisher);
     public string? CompanyVatNumber => JavaCertificateHelper.GetCompanyVatNumber(Subject, IssuerString);
 
-    public static CertificateDetails From(ISigningIdentity identity)
+    public static CertificateDetails From(ISigningIdentity identity) => From(identity, TimeZoneInfo.Local);
+
+    /// <param name="timeZone">Zone for validFrom/validTo; the original used the JVM's (i.e. the computer's) local zone.</param>
+    public static CertificateDetails From(ISigningIdentity identity, TimeZoneInfo timeZone)
     {
         var cert = identity.Certificate;
         var chain = BuildChain(cert, identity.ExtraCertificates);
@@ -32,14 +35,18 @@ public sealed record CertificateDetails(
             CertificationChain: Convert.ToBase64String(EncodePkiPath(chain)),
             SerialNumber: new BigInteger(cert.SerialNumberBytes.Span, isUnsigned: false, isBigEndian: true).ToString(),
             Publisher: JavaDn.ToRfc2253(cert.IssuerName),
-            ValidFrom: JavaDate(cert.NotBefore),
-            ValidTo: JavaDate(cert.NotAfter),
+            ValidFrom: JavaDate(cert.NotBefore, timeZone),
+            ValidTo: JavaDate(cert.NotAfter, timeZone),
             Subject: JavaDn.ToJavaString(cert.SubjectName),
             EncodedCertificate: cert.RawData);
     }
 
-    // DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("mk")) in the JVM's local time zone.
-    private static string JavaDate(DateTime local) => $"{local.Day}.{local.Month}.{local.Year}";
+    // DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("mk")): d.M.yyyy
+    private static string JavaDate(DateTime local, TimeZoneInfo timeZone)
+    {
+        var date = TimeZoneInfo.ConvertTimeFromUtc(local.ToUniversalTime(), timeZone);
+        return $"{date.Day}.{date.Month}.{date.Year}";
+    }
 
     /// <summary>Leaf-first chain, like KeyStore.getCertificateChain().</summary>
     public static List<X509Certificate2> BuildChain(X509Certificate2 leaf, IEnumerable<X509Certificate2> extra)
