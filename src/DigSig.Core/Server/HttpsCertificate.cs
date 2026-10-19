@@ -23,16 +23,17 @@ public static class HttpsCertificate
     public static X509Certificate2 LoadOrCreate(string? pfxPath = null)
     {
         pfxPath ??= DefaultPath;
-        if (!File.Exists(pfxPath))
-        {
-            using var created = CreateSelfSigned();
-            Save(created, pfxPath);
-        }
+        if (!File.Exists(pfxPath)) Save(CreateSelfSignedPkcs12(), pfxPath);
         return X509CertificateLoader.LoadPkcs12FromFile(pfxPath, "", KeyStorageFlags);
     }
 
     /// <summary>A new self-signed certificate for localhost / 127.0.0.1 / ::1.</summary>
-    public static X509Certificate2 CreateSelfSigned()
+    public static X509Certificate2 CreateSelfSigned() =>
+        // Loaded from PKCS#12 so the key is usable by the TLS stack on every OS.
+        X509CertificateLoader.LoadPkcs12(CreateSelfSignedPkcs12(), "", KeyStorageFlags);
+
+    // Kept as PKCS#12 bytes: once loaded for TLS on Windows the key is no longer exportable.
+    private static byte[] CreateSelfSignedPkcs12()
     {
         using var key = RSA.Create(2048);
         var request = new CertificateRequest("CN=DigSig localhost", key, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
@@ -45,8 +46,7 @@ public static class HttpsCertificate
         request.CertificateExtensions.Add(new X509KeyUsageExtension(X509KeyUsageFlags.DigitalSignature | X509KeyUsageFlags.KeyEncipherment, true));
         request.CertificateExtensions.Add(new X509EnhancedKeyUsageExtension([new Oid("1.3.6.1.5.5.7.3.1")], false));
         using var cert = request.CreateSelfSigned(DateTimeOffset.UtcNow.AddDays(-1), DateTimeOffset.UtcNow.AddYears(5));
-        // Round-trip through PKCS#12 so the key is usable by the TLS stack on every OS.
-        return X509CertificateLoader.LoadPkcs12(cert.Export(X509ContentType.Pkcs12, ""), "", KeyStorageFlags);
+        return cert.Export(X509ContentType.Pkcs12, "");
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public static class HttpsCertificate
         using var ms = new MemoryStream();
         stream.CopyTo(ms);
         using var original = X509CertificateLoader.LoadPkcs12(ms.ToArray(), OriginalPassword, KeyStorageFlags | X509KeyStorageFlags.Exportable);
-        Save(original, pfxPath ?? DefaultPath);
+        Save(original.Export(X509ContentType.Pkcs12, ""), pfxPath ?? DefaultPath);
         return LoadOrCreate(pfxPath);
     }
 
@@ -83,10 +83,10 @@ public static class HttpsCertificate
         return store.Certificates.Find(X509FindType.FindByThumbprint, certificate.Thumbprint, validOnly: false).Count > 0;
     }
 
-    private static void Save(X509Certificate2 certificate, string pfxPath)
+    private static void Save(byte[] pkcs12, string pfxPath)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(pfxPath)!);
-        File.WriteAllBytes(pfxPath, certificate.Export(X509ContentType.Pkcs12, ""));
+        File.WriteAllBytes(pfxPath, pkcs12);
     }
 
     // SChannel (Windows) and macOS cannot serve TLS from an ephemeral key.
